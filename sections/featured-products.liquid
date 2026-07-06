@@ -1,0 +1,47 @@
+<section class="section-block">
+  <div class="section-wrapper">
+    <div class="section-title-wrap">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <a href="{{ section.settings.view_all_link }}" class="view-all-link">View All →</a>
+    </div>
+
+    <div class="product-grid">
+      {% assign collection = collections[section.settings.collection] %}
+      {% if collection != blank %}
+        {% for product in collection.products limit: section.settings.products_limit %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {% for i in (1..8) %}
+          <div class="product-card">
+            <div class="product-card-img-wrap">
+              {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+            <div class="product-card-body">
+              <div class="product-vendor">Brand</div>
+              <div class="product-title">Sample Product {{ i }}</div>
+              <div class="product-price-row">
+                <span class="price-current">£29.99</span>
+                <span class="price-original">£49.99</span>
+              </div>
+              <button class="add-to-cart-btn">🛒 Add to Cart</button>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Section Title", "default": "🔥 Featured Products" },
+    { "type": "collection", "id": "collection", "label": "Select Collection" },
+    { "type": "range", "id": "products_limit", "label": "Number of Products", "min": 4, "max": 12, "step": 4, "default": 8 },
+    { "type": "url", "id": "view_all_link", "label": "View All Link" }
+  ],
+  "presets": [{ "name": "Featured Products" }]
+}
+{% endschema %}
