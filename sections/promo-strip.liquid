@@ -1,0 +1,32 @@
+<div class="promo-strip">
+  {{ section.settings.promo_text }}
+  {% if section.settings.promo_link != blank %}
+    <a href="{{ section.settings.promo_link }}">{{ section.settings.promo_link_text }}</a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Promo Strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo Text",
+      "default": "🚀 Same Day Delivery on orders over £29 | Free Returns within 30 days"
+    },
+    {
+      "type": "text",
+      "id": "promo_link_text",
+      "label": "Link Text",
+      "default": "Shop Now →"
+    },
+    {
+      "type": "url",
+      "id": "promo_link",
+      "label": "Promo Link"
+    }
+  ],
+  "presets": [{ "name": "Promo Strip" }]
+}
+{% endschema %}
