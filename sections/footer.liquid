@@ -1,0 +1,91 @@
+<footer class="site-footer">
+  <div class="section-wrapper">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div>
+        <div class="footer-logo">
+          {{ shop.name | split: ' ' | first }}<span>{{ shop.name | split: ' ' | last }}</span>
+        </div>
+        <p class="footer-about">{{ section.settings.about_text }}</p>
+        <div class="footer-social">
+          {% if section.settings.facebook != blank %}
+            <a href="{{ section.settings.facebook }}" class="social-btn">📘</a>
+          {% endif %}
+          {% if section.settings.instagram != blank %}
+            <a href="{{ section.settings.instagram }}" class="social-btn">📸</a>
+          {% endif %}
+          {% if section.settings.twitter != blank %}
+            <a href="{{ section.settings.twitter }}" class="social-btn">🐦</a>
+          {% endif %}
+          {% if section.settings.youtube != blank %}
+            <a href="{{ section.settings.youtube }}" class="social-btn">▶️</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Customer Service -->
+      <div>
+        <div class="footer-heading">Customer Service</div>
+        <ul class="footer-links">
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/returns">Returns & Refunds</a></li>
+          <li><a href="/pages/delivery">Delivery Info</a></li>
+          <li><a href="/pages/faq">FAQs</a></li>
+          <li><a href="/pages/warranty">Warranty</a></li>
+          <li><a href="/account">My Account</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <div class="footer-heading">Contact Us</div>
+        <ul class="footer-links">
+          {% if section.settings.email != blank %}
+            <li>📧 <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
+          {% endif %}
+          {% if section.settings.phone != blank %}
+            <li>📞 <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></li>
+          {% endif %}
+          {% if section.settings.address != blank %}
+            <li>📍 {{ section.settings.address }}</li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All Rights Reserved. |
+    <a href="/policies/privacy-policy">Privacy Policy</a> |
+    <a href="/policies/terms-of-service">Terms of Service</a>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "about_text", "label": "About Text", "default": "Your trusted UK destination for electronics, gadgets and more. Great prices, fast delivery." },
+    { "type": "text", "id": "email", "label": "Email Address" },
+    { "type": "text", "id": "phone", "label": "Phone Number" },
+    { "type": "text", "id": "address", "label": "Address" },
+    { "type": "url", "id": "facebook", "label": "Facebook URL" },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "twitter", "label": "Twitter/X URL" },
+    { "type": "url", "id": "youtube", "label": "YouTube URL" }
+  ],
+  "presets": [{ "name": "Footer" }]
+}
+{% endschema %}
