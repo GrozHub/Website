@@ -1,0 +1,8 @@
+{% if product.compare_at_price > product.price %}
+  <span class="price-current">{{ product.price | money }}</span>
+  <span class="price-original">{{ product.compare_at_price | money }}</span>
+  {% assign savings = product.compare_at_price | minus: product.price %}
+  <span class="price-save">Save {{ savings | money }}</span>
+{% else %}
+  <span class="price-current">{{ product.price | money }}</span>
+{% endif %}
