@@ -1,0 +1,60 @@
+<section class="hero-banner">
+  <div class="section-wrapper">
+    <div class="hero-grid">
+
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">{{ section.settings.eyebrow }}</div>
+        <h1 class="hero-title">
+          {{ section.settings.title }}
+          <span class="highlight">{{ section.settings.title_highlight }}</span>
+        </h1>
+        <p class="hero-subtitle">{{ section.settings.subtitle }}</p>
+
+        <div class="hero-badges">
+          <span class="hero-badge">⚡ Same Day Delivery</span>
+          <span class="hero-badge">🔄 Free Returns</span>
+          <span class="hero-badge">🔒 Secure Payment</span>
+        </div>
+
+        <div class="hero-btns">
+          <a href="{{ section.settings.btn1_link }}" class="hero-btn">
+            {{ section.settings.btn1_text }}
+          </a>
+          <a href="{{ section.settings.btn2_link }}" class="hero-btn-outline">
+            {{ section.settings.btn2_text }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="hero-image-wrap">
+        {% if section.settings.hero_image != blank %}
+          <img src="{{ section.settings.hero_image | img_url: '700x' }}"
+               alt="{{ section.settings.title }}" loading="lazy">
+        {% else %}
+          <div style="color:#fff; font-size:120px; text-align:center;">🛍️</div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "🏆 THE UK'S BEST DEALS" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Shop Smarter," },
+    { "type": "text", "id": "title_highlight", "label": "Title Highlight", "default": "Save Bigger." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Thousands of products. Unbeatable prices. Same-day delivery available." },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero Image" },
+    { "type": "text", "id": "btn1_text", "label": "Button 1 Text", "default": "🛒 Shop Now" },
+    { "type": "url", "id": "btn1_link", "label": "Button 1 Link" },
+    { "type": "text", "id": "btn2_text", "label": "Button 2 Text", "default": "View Deals →" },
+    { "type": "url", "id": "btn2_link", "label": "Button 2 Link" }
+  ],
+  "presets": [{ "name": "Hero Banner" }]
+}
+{% endschema %}
