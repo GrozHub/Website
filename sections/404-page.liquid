@@ -1,0 +1,41 @@
+<div class="section-wrapper">
+  <div class="not-found-page">
+    <div class="not-found-icon">😕</div>
+    <h1>404 — Page Not Found</h1>
+    <p>Oops! The page you're looking for doesn't exist or has been moved.</p>
+    <div class="not-found-actions">
+      <a href="/" class="hero-btn">🏠 Go to Homepage</a>
+      <a href="/collections/all" class="buy-now-btn" style="display:inline-block; padding:14px 32px; border-radius:8px; margin-left:12px;">
+        🛍️ Shop All Products
+      </a>
+    </div>
+    <div class="not-found-search">
+      <p>Or search for what you need:</p>
+      <form action="/search" method="get" class="header-search" style="max-width:500px; margin: 12px auto 0;">
+        <input type="text" name="q" placeholder="Search products...">
+        <button type="submit">🔍</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+.not-found-page {
+  text-align: center; padding: 80px 20px;
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.not-found-icon { font-size: 80px; margin-bottom: 20px; }
+.not-found-page h1 { font-size: 30px; font-weight: 800; margin-bottom: 12px; color: #1a1a1a; }
+.not-found-page p { color: #888; font-size: 15px; margin-bottom: 24px; }
+.not-found-actions { margin-bottom: 30px; }
+.not-found-search p { color: #aaa; font-size: 13px; }
+</style>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [],
+  "presets": [{ "name": "404 Page" }]
+}
+{% endschema %}
