@@ -1,0 +1,53 @@
+<div class="product-card">
+  <div class="product-card-img-wrap">
+    {% if product.available == false %}
+      <span class="product-badge">Sold Out</span>
+    {% elsif product.compare_at_price > product.price %}
+      {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+      <span class="product-badge">-{{ discount }}%</span>
+    {% endif %}
+
+    <a href="{{ product.url }}">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | img_url: '400x' }}"
+             alt="{{ product.title }}" loading="lazy">
+      {% else %}
+        {{ product.title | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </a>
+
+    <button class="product-wishlist" data-wishlisted="false" aria-label="Add to Wishlist">🤍</button>
+  </div>
+
+  <div class="product-card-body">
+    <div class="product-vendor">{{ product.vendor }}</div>
+    <a href="{{ product.url }}">
+      <div class="product-title">{{ product.title }}</div>
+    </a>
+
+    <div class="product-rating">
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span>({{ product.metafields.reviews.rating_count | default: '0' }})</span>
+    </div>
+
+    <div class="product-price-row">
+      <span class="price-current">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="price-original">{{ product.compare_at_price | money }}</span>
+        {% assign savings = product.compare_at_price | minus: product.price %}
+        <span class="price-save">Save {{ savings | money }}</span>
+      {% endif %}
+    </div>
+
+    {% if product.available %}
+      <button class="add-to-cart-btn"
+              data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+        🛒 Add to Cart
+      </button>
+    {% else %}
+      <button class="add-to-cart-btn" disabled style="background:#ccc; cursor:not-allowed;">
+        Out of Stock
+      </button>
+    {% endif %}
+  </div>
+</div>
