@@ -1,0 +1,83 @@
+<div class="section-wrapper">
+  <div class="collection-header">
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <p>{{ collection.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="collection-layout">
+    <aside class="filter-sidebar">
+      <h3>🔽 Filter By</h3>
+      <div class="filter-group">
+        <label class="filter-title">Sort By</label>
+        <select onchange="window.location.href=this.value" class="sort-select">
+          <option value="?sort_by=best-selling">Best Selling</option>
+          <option value="?sort_by=price-ascending">Price: Low to High</option>
+          <option value="?sort_by=price-descending">Price: High to Low</option>
+          <option value="?sort_by=created-descending">Newest First</option>
+          <option value="?sort_by=title-ascending">A - Z</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-title">Price Range</label>
+        <div class="price-filter-btns">
+          <a href="?filter.v.price.gte=0&filter.v.price.lte=25" class="filter-tag">Under £25</a>
+          <a href="?filter.v.price.gte=25&filter.v.price.lte=50" class="filter-tag">£25 – £50</a>
+          <a href="?filter.v.price.gte=50&filter.v.price.lte=100" class="filter-tag">£50 – £100</a>
+          <a href="?filter.v.price.gte=100&filter.v.price.lte=250" class="filter-tag">£100 – £250</a>
+          <a href="?filter.v.price.gte=250" class="filter-tag">Over £250</a>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-title">Availability</label>
+        <label class="checkbox-label"><input type="checkbox"> In Stock Only</label>
+      </div>
+    </aside>
+
+    <div class="collection-main">
+      <div class="collection-toolbar">
+        <span class="product-count">{{ collection.products_count }} Products</span>
+      </div>
+      <div class="product-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          <p style="color:#888; padding:40px 0;">No products found.</p>
+        {% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}
+        <div class="pagination">{{ paginate | default_pagination }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.collection-header { margin-bottom: 24px; }
+.collection-header h1 { font-size: 26px; font-weight: 800; color: #1a1a1a; }
+.collection-header p { color: #666; font-size: 14px; margin-top: 6px; }
+.collection-layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; }
+.filter-sidebar { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); height: fit-content; position: sticky; top: 80px; }
+.filter-sidebar h3 { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: #1a1a1a; }
+.filter-group { margin-bottom: 20px; border-bottom: 1px solid #f0f0f0; padding-bottom: 16px; }
+.filter-group:last-child { border-bottom: none; margin-bottom: 0; }
+.filter-title { font-size: 13px; font-weight: 700; color: #333; display: block; margin-bottom: 10px; }
+.sort-select { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; cursor: pointer; }
+.price-filter-btns { display: flex; flex-direction: column; gap: 6px; }
+.filter-tag { padding: 6px 12px; background: #f4f4f4; border-radius: 6px; font-size: 12.5px; color: #333; font-weight: 500; transition: all 0.2s; }
+.filter-tag:hover { background: #fff0f2; color: #e8001d; }
+.checkbox-label { font-size: 13px; color: #444; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.collection-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 12px 16px; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+.product-count { font-size: 13.5px; color: #666; font-weight: 600; }
+.pagination { text-align: center; margin-top: 30px; padding: 20px 0; }
+@media(max-width: 768px) { .collection-layout { grid-template-columns: 1fr; } .filter-sidebar { position: static; } }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Page",
+  "settings": [],
+  "presets": [{ "name": "Collection Page" }]
+}
+{% endschema %}
