@@ -1,0 +1,6 @@
+<a href="/cart" class="cart-icon-wrap">
+  <span class="icon">🛒</span>
+  {% if cart.item_count > 0 %}
+    <span class="cart-count">{{ cart.item_count }}</span>
+  {% endif %}
+</a>
