@@ -1,0 +1,102 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search for products, brands, categories...",
+      "submit": "Search",
+      "no_results": "No results found for",
+      "results_with_count": "{{ count }} results for"
+    },
+    "currency": {
+      "symbol": "£"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "header": {
+    "login": "Login",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "cart": "Cart"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "empty_message": "Looks like you haven't added anything yet!",
+    "continue_shopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "free_delivery": "FREE",
+    "delivery_calculated": "Calculated at checkout",
+    "total": "Total",
+    "checkout": "Secure Checkout",
+    "free_delivery_message": "Add {{ amount }} more for FREE delivery!",
+    "items_count": "{{ count }} items",
+    "remove": "Remove",
+    "we_accept": "We Accept"
+  },
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "buy_now": "Buy Now",
+    "out_of_stock": "Out of Stock",
+    "sold_out": "Sold Out",
+    "save": "Save",
+    "reviews": "reviews",
+    "product_details": "Product Details",
+    "vendor": "Brand",
+    "quantity": "Quantity",
+    "size": "Size",
+    "color": "Color",
+    "same_day_delivery": "Same-Day Delivery",
+    "same_day_delivery_info": "Order before 11am on orders over £29",
+    "free_delivery": "Free Standard Delivery",
+    "free_delivery_info": "On all orders over £29",
+    "free_returns": "Free Returns",
+    "free_returns_info": "Within 30 days of purchase",
+    "secure_payment": "Secure Payment",
+    "genuine_products": "Genuine Products",
+    "support": "24/7 Support"
+  },
+  "collection": {
+    "filter_by": "Filter By",
+    "sort_by": "Sort By",
+    "best_selling": "Best Selling",
+    "price_low_high": "Price: Low to High",
+    "price_high_low": "Price: High to Low",
+    "newest_first": "Newest First",
+    "a_to_z": "A - Z",
+    "price_range": "Price Range",
+    "availability": "Availability",
+    "in_stock_only": "In Stock Only",
+    "products_count": "{{ count }} Products",
+    "no_products": "No products found in this collection."
+  },
+  "footer": {
+    "quick_links": "Quick Links",
+    "customer_service": "Customer Service",
+    "contact_us": "Contact Us",
+    "returns": "Returns & Refunds",
+    "delivery_info": "Delivery Info",
+    "faqs": "FAQs",
+    "warranty": "Warranty",
+    "my_account": "My Account",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "all_rights_reserved": "All Rights Reserved"
+  },
+  "404": {
+    "title": "404 — Page Not Found",
+    "message": "Oops! The page you're looking for doesn't exist or has been moved.",
+    "go_home": "Go to Homepage",
+    "shop_all": "Shop All Products",
+    "search_placeholder": "Search products..."
+  },
+  "accessibility": {
+    "add_to_wishlist": "Add to Wishlist",
+    "remove_from_wishlist": "Remove from Wishlist",
+    "close": "Close",
+    "open_menu": "Open Menu",
+    "skip_to_content": "Skip to content"
+  }
+}
