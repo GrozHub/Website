@@ -1,0 +1,111 @@
+<div class="section-wrapper">
+  <h1 class="cart-title">🛒 Your Cart</h1>
+
+  {% if cart.item_count == 0 %}
+    <div class="empty-cart">
+      <div class="empty-icon">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything yet!</p>
+      <a href="/collections/all" class="hero-btn" style="display:inline-block; margin-top:20px;">Continue Shopping →</a>
+    </div>
+  {% else %}
+    <div class="cart-layout">
+      <div class="cart-items">
+        {% for item in cart.items %}
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="{{ item.image | img_url: '150x' }}" alt="{{ item.title }}">
+            </div>
+            <div class="cart-item-info">
+              <a href="{{ item.url }}" class="cart-item-title">{{ item.title }}</a>
+              <div class="cart-item-variant">{{ item.variant.title }}</div>
+              <div class="cart-item-vendor">{{ item.vendor }}</div>
+              <div class="cart-item-price">{{ item.price | money }}</div>
+              <div class="cart-item-actions">
+                <div class="qty-selector">
+                  <button type="button" onclick="updateQty('{{ item.key }}', {{ item.quantity | minus: 1 }})">−</button>
+                  <input type="number" value="{{ item.quantity }}" min="0" onchange="updateQty('{{ item.key }}', this.value)">
+                  <button type="button" onclick="updateQty('{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
+                </div>
+                <a href="/cart/change?id={{ item.key }}&quantity=0" class="remove-item">🗑️ Remove</a>
+              </div>
+            </div>
+            <div class="cart-item-total">{{ item.line_price | money }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-row"><span>Subtotal ({{ cart.item_count }} items)</span><span>{{ cart.total_price | money }}</span></div>
+        <div class="summary-row"><span>Delivery</span><span class="free-delivery">{% if cart.total_price >= 2900 %}FREE{% else %}Calculated at checkout{% endif %}</span></div>
+        {% if cart.total_price < 2900 %}
+          <div class="free-delivery-progress">
+            <p>Add **{{ 2900 | minus: cart.total_price | money }}** more for FREE delivery! 🚚</p>
+            <div class="progress-bar"><div class="progress-fill" style="width:{{ cart.total_price | times: 100 | divided_by: 2900 }}%"></div></div>
+          </div>
+        {% endif %}
+        <div class="summary-total"><span>Total</span><span>{{ cart.total_price | money }}</span></div>
+        <a href="/checkout" class="checkout-btn">🔒 Secure Checkout</a>
+        <a href="/collections/all" class="continue-shopping">← Continue Shopping</a>
+        <div class="payment-methods"><p>We Accept:</p><div class="payment-icons-row">💳 🍎 🅿️ 📦</div></div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+.cart-title { font-size: 26px; font-weight: 800; margin-bottom: 24px; }
+.empty-cart { text-align: center; padding: 80px 20px; background: #fff; border-radius: 16px; }
+.empty-icon { font-size: 60px; margin-bottom: 16px; }
+.empty-cart h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.cart-layout { display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: start; }
+.cart-items { display: flex; flex-direction: column; gap: 12px; }
+.cart-item { background: #fff; border-radius: 12px; padding: 16px; display: flex; gap: 16px; align-items: flex-start; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.cart-item-img { width: 90px; flex-shrink: 0; }
+.cart-item-img img { width: 90px; height: 90px; object-fit: contain; border-radius: 8px; border: 1px solid #eee; }
+.cart-item-info { flex: 1; }
+.cart-item-title { font-size: 14px; font-weight: 700; color: #1a1a1a; display: block; margin-bottom: 4px; }
+.cart-item-title:hover { color: #e8001d; }
+.cart-item-variant { font-size: 12px; color: #888; margin-bottom: 2px; }
+.cart-item-vendor { font-size: 11px; color: #e8001d; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+.cart-item-price { font-size: 16px; font-weight: 700; color: #e8001d; margin-bottom: 10px; }
+.cart-item-actions { display: flex; align-items: center; gap: 14px; }
+.remove-item { font-size: 12px; color: #888; transition: color 0.2s; }
+.remove-item:hover { color: #e8001d; }
+.cart-item-total { font-size: 16px; font-weight: 800; color: #1a1a1a; white-space: nowrap; }
+.cart-summary { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); position: sticky; top: 80px; }
+.cart-summary h2 { font-size: 18px; font-weight: 800; margin-bottom: 20px; }
+.summary-row { display: flex; justify-content: space-between; font-size: 14px; color: #555; margin-bottom: 12px; }
+.free-delivery { color: #28a745; font-weight: 700; }
+.free-delivery-progress { background: #f9f9f9; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.free-delivery-progress p { font-size: 12.5px; color: #555; margin-bottom: 8px; }
+.progress-bar { background: #eee; border-radius: 50px; height: 6px; }
+.progress-fill { background: #e8001d; height: 6px; border-radius: 50px; }
+.summary-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: #1a1a1a; padding: 16px 0; border-top: 2px solid #eee; margin-bottom: 16px; }
+.checkout-btn { display: block; width: 100%; background: #e8001d; color: #fff; text-align: center; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 700; margin-bottom: 10px; transition: background 0.2s; }
+.checkout-btn:hover { background: #c0001a; }
+.continue-shopping { display: block; text-align: center; color: #555; font-size: 13px; margin-bottom: 16px; }
+.payment-methods { text-align: center; font-size: 12px; color: #aaa; }
+.payment-icons-row { font-size: 22px; margin-top: 6px; }
+@media(max-width: 768px) { .cart-layout { grid-template-columns: 1fr; } .cart-summary { position: static; } }
+</style>
+
+<script>
+function updateQty(key, qty) {
+  if (qty < 0) qty = 0;
+  fetch('/cart/change.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: key, quantity: parseInt(qty) })
+  }).then(() => location.reload());
+}
+</script>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": [],
+  "presets": [{ "name": "Cart Page" }]
+}
+{% endschema %}
