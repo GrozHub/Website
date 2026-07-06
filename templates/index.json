@@ -1,0 +1,101 @@
+{
+  "sections": {
+    "promo-strip": {
+      "type": "promo-strip",
+      "settings": {
+        "promo_text": "🚀 Same Day Delivery on orders over £29 | Free Returns within 30 days",
+        "promo_link_text": "Shop Now →",
+        "promo_link": "/collections/all"
+      }
+    },
+    "hero-banner": {
+      "type": "hero-banner",
+      "settings": {
+        "eyebrow": "🏆 THE UK'S BEST DEALS",
+        "title": "Shop Smarter,",
+        "title_highlight": "Save Bigger.",
+        "subtitle": "Thousands of products. Unbeatable prices. Same-day delivery available.",
+        "btn1_text": "🛒 Shop Now",
+        "btn1_link": "/collections/all",
+        "btn2_text": "View Deals →",
+        "btn2_link": "/collections/deals"
+      }
+    },
+    "category-grid": {
+      "type": "category-grid",
+      "settings": {
+        "title": "Shop by Category"
+      },
+      "blocks": {
+        "phones": {
+          "type": "category",
+          "settings": {
+            "icon": "📱",
+            "name": "Phones",
+            "count": "500+ items",
+            "link": "/collections/phones"
+          }
+        },
+        "laptops": {
+          "type": "category",
+          "settings": {
+            "icon": "💻",
+            "name": "Laptops",
+            "count": "300+ items",
+            "link": "/collections/laptops"
+          }
+        },
+        "tvs": {
+          "type": "category",
+          "settings": {
+            "icon": "📺",
+            "name": "TVs",
+            "count": "200+ items",
+            "link": "/collections/tvs"
+          }
+        },
+        "gaming": {
+          "type": "category",
+          "settings": {
+            "icon": "🎮",
+            "name": "Gaming",
+            "count": "400+ items",
+            "link": "/collections/gaming"
+          }
+        },
+        "audio": {
+          "type": "category",
+          "settings": {
+            "icon": "🎧",
+            "name": "Audio",
+            "count": "350+ items",
+            "link": "/collections/audio"
+          }
+        },
+        "wearables": {
+          "type": "category",
+          "settings": {
+            "icon": "⌚",
+            "name": "Wearables",
+            "count": "150+ items",
+            "link": "/collections/wearables"
+          }
+        }
+      },
+      "blocks_order": ["phones", "laptops", "tvs", "gaming", "audio", "wearables"]
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "🔥 Featured Products",
+        "products_limit": 8,
+        "view_all_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "category-grid",
+    "featured-products"
+  ]
+}
