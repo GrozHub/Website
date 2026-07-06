@@ -1,0 +1,77 @@
+<header class="site-header">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a href="/" class="header-logo">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height:44px;">
+      {% else %}
+        {{ shop.name | split: ' ' | first }}
+        <span>{{ shop.name | split: ' ' | last }}</span>
+      {% endif %}
+    </a>
+
+    <!-- Search -->
+    <form action="/search" method="get" class="header-search">
+      <input type="text" name="q" placeholder="Search for products, brands, categories..."
+             value="{{ search.terms | escape }}" autocomplete="off">
+      <button type="submit">🔍 Search</button>
+    </form>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      {% if customer %}
+        <a href="/account" class="header-action-btn">
+          <span class="icon">👤</span>
+          <span>Account</span>
+        </a>
+      {% else %}
+        <a href="/account/login" class="header-action-btn">
+          <span class="icon">👤</span>
+          <span>Login</span>
+        </a>
+      {% endif %}
+
+      <a href="/wishlist" class="header-action-btn">
+        <span class="icon">🤍</span>
+        <span>Wishlist</span>
+      </a>
+
+      <a href="/cart" class="header-action-btn cart-icon-wrap">
+        <span class="icon">🛒</span>
+        <span>Cart</span>
+        {% if cart.item_count > 0 %}
+          <span class="cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <nav class="header-nav">
+    <div class="nav-inner">
+      <a href="/collections/all" class="nav-link">🛍️ All Products</a>
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}"
+           class="nav-link {% if link.active %}active{% endif %}">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    }
+  ],
+  "presets": [{ "name": "Header" }]
+}
+{% endschema %}
