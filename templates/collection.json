@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "collection-page": {
+      "type": "collection-page",
+      "settings": {}
+    }
+  },
+  "order": ["collection-page"]
+}
